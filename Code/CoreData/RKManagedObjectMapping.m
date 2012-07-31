@@ -156,6 +156,8 @@
         if ([primaryKeyAttributeMapping isMappingForKeyOfNestedDictionary]) {
             RKLogDebug(@"Detected use of nested dictionary key as primaryKey attribute...");
             primaryKeyValue = [[mappableData allKeys] lastObject];
+        } else if ([mappableData isKindOfClass:[NSString class]] || [mappableData isKindOfClass:[NSNumber class]]) {
+            primaryKeyValue = mappableData;
         } else {
             NSString* keyPathForPrimaryKeyElement = primaryKeyAttributeMapping.sourceKeyPath;
             if (keyPathForPrimaryKeyElement) {
